@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DanceApConfig(AppConfig):
+class DanceAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'dance_ap'
+    name = 'dance_app'

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dance School Registration</title>
+</head>
+<body>
+    <h2>Dance School Registration</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>School Name:</label><br><input type="text" name="name"><br><br>
+
+        <label>Address:</label><br><input type="text" name="address"><br><br>
+
+        <label>City:</label><br><input type="text" name="city"><br><br>
+
+        <label>Membership Cost:</label><br><input type="number" name="cost"><br><br>
+
+        <label>Dance Styles Offered:</label><br>
+        <input type="text" name="styles" placeholder="Hip-Hop, Salsa, Ballet, etc."><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
