@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dance School Registration</title>
+    <title>Register Dance School</title>
 </head>
 <body>
     <h2>Dance School Registration</h2>
     <form method="POST">
         {% csrf_token %}
-        <label>School Name:</label><br><input type="text" name="name"><br><br>
+        <label for="name">School Name:</label><br>
+        <input type="text" name="name" required><br><br>
 
-        <label>Address:</label><br><input type="text" name="address"><br><br>
+        <label for="address">Address:</label><br>
+        <input type="text" name="address" required><br><br>
 
-        <label>City:</label><br><input type="text" name="city"><br><br>
+        <label for="city">City:</label><br>
+        <input type="text" name="city" required><br><br>
 
-        <label>Membership Cost:</label><br><input type="number" name="cost"><br><br>
+        <label for="contact_email">Contact Email:</label><br>
+        <input type="email" name="contact_email" required><br><br>
 
-        <label>Dance Styles Offered:</label><br>
-        <input type="text" name="styles" placeholder="Hip-Hop, Salsa, Ballet, etc."><br><br>
+        <label for="phone_number">Phone Number:</label><br>
+        <input type="text" name="phone_number" required><br><br>
 
-        <button type="submit">Submit</button>
+        <label for="dances_taught">Dances Taught:</label><br>
+        <textarea name="dances_taught" rows="3" placeholder="e.g. Salsa, Tango, Hip Hop" required></textarea><br><br>
+
+        <label for="classes_per_week">Number of Classes per Week:</label><br>
+        <input type="number" name="classes_per_week" min="1" required><br><br>
+
+        <button type="submit">Register</button>
     </form>
 </body>
 </html>

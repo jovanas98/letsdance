@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import DanceSchool
 
 def landing(request):
     return render(request, 'dance_app/landing.html')
@@ -8,7 +9,56 @@ def register_dancer(request):
         pass
     return render(request, 'dance_app/register_dancer.html')
 
+from django.shortcuts import render, redirect
+from .models import DanceSchool
+
 def register_school(request):
     if request.method == "POST":
-        pass
+        name = request.POST.get("name")
+        address = request.POST.get("address")
+        city = request.POST.get("city")
+        contact_email = request.POST.get("contact_email")
+        phone_number = request.POST.get("phone_number")
+        dances_taught = request.POST.get("dances_taught")
+        classes_per_week = request.POST.get("classes_per_week")
+
+        DanceSchool.objects.create(
+            name=name,
+            address=address,
+            city=city,
+            contact_email=contact_email,
+            phone_number=phone_number,
+            dances_taught=dances_taught,
+            classes_per_week=classes_per_week
+        )
+
+        return redirect('school_list')
+
     return render(request, 'dance_app/register_school.html')
+
+def school_list(request):
+    schools = DanceSchool.objects.all()
+    return render(request, 'dance_app/school_list.html', {'schools': schools})
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import User
+
+def login_view(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        try:
+            user = User.objects.get(email=email)
+            if user.check_password(password):
+                request.session['user_id'] = user.id
+                request.session['user_name'] = user.name
+                messages.success(request, f"Welcome back, {user.name}!")
+                return redirect('landing')
+            else:
+                messages.error(request, "Invalid password.")
+        except User.DoesNotExist:
+            messages.error(request, "No user with that email found.")
+
+    return render(request, 'dance_app/login.html')

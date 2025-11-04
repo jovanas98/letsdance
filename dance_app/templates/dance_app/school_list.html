@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dance Schools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 30px;
+        }
+        .school-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            margin: 0 0 5px 0;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Dance Schools</h1>
+    {% for school in schools %}
+        <div class="school-card">
+            <h2>{{ school.name }}</h2>
+            <p><strong>Address:</strong> {{ school.address }}</p>
+            <p><strong>City:</strong> {{ school.city }}</p>
+            <p><strong>Email:</strong> {{ school.contact_email }}</p>
+            <p><strong>Phone:</strong> {{ school.phone_number }}</p>
+            <p><strong>Dances Taught:</strong> {{ school.dances_taught }}</p>
+            <p><strong>Classes per Week:</strong> {{ school.classes_per_week }}</p>
+        </div>
+    {% empty %}
+        <p>No dance schools have been registered yet.</p>
+    {% endfor %}
+</body>
+</html>
