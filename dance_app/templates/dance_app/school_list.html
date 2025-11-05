@@ -1,43 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dance Schools</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            padding: 30px;
-        }
-        .school-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        h2 {
-            margin: 0 0 5px 0;
-            color: #444;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dance Schools</title>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #d6d5d6;
+      color: #222;
+      text-align: center;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 56px;
+      color: #004c43;
+      margin-bottom: 40px;
+    }
+
+    .school-list {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .school {
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      box-shadow: none;
+    }
+
+    .school h3 {
+      color: #004c43;
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+
+    .school p {
+      margin: 4px 0;
+      font-size: 16px;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Our Dance Schools</h1>
+  <h1>Dance Schools</h1>
+
+  <div class="school-list">
     {% for school in schools %}
-        <div class="school-card">
-            <h2>{{ school.name }}</h2>
-            <p><strong>Address:</strong> {{ school.address }}</p>
-            <p><strong>City:</strong> {{ school.city }}</p>
-            <p><strong>Email:</strong> {{ school.contact_email }}</p>
-            <p><strong>Phone:</strong> {{ school.phone_number }}</p>
-            <p><strong>Dances Taught:</strong> {{ school.dances_taught }}</p>
-            <p><strong>Classes per Week:</strong> {{ school.classes_per_week }}</p>
-        </div>
+      <div class="school">
+        <h3>{{ school.name }}</h3>
+        <p><strong>City:</strong> {{ school.city }}</p>
+        <p><strong>Address:</strong> {{ school.address }}</p>
+        <p><strong>Email:</strong> {{ school.contact_email }}</p>
+        <p><strong>Phone:</strong> {{ school.phone_number }}</p>
+        <p><strong>Dances Taught:</strong> {{ school.dances_taught }}</p>
+        <p><strong>Classes per Week:</strong> {{ school.classes_per_week }}</p>
+      </div>
     {% empty %}
-        <p>No dance schools have been registered yet.</p>
+      <p>No dance schools found.</p>
     {% endfor %}
+  </div>
 </body>
 </html>
