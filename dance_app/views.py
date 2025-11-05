@@ -4,10 +4,32 @@ from .models import DanceSchool
 def landing(request):
     return render(request, 'dance_app/landing.html')
 
+from django.shortcuts import render
+from .models import Dancer
+
 def register_dancer(request):
+    success = False
     if request.method == "POST":
-        pass
-    return render(request, 'dance_app/register_dancer.html')
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        age = request.POST.get("age")
+        phone = request.POST.get("phone")
+        city = request.POST.get("city")
+        dance_style = request.POST.get("dance_style")
+
+        
+        if first_name and last_name and age and phone and city and dance_style:
+            Dancer.objects.create(
+                first_name=first_name,
+                last_name=last_name,
+                age=age,
+                phone=phone,
+                city=city,
+                dance_style=dance_style
+            )
+            success = True
+
+    return render(request, 'dance_app/register_dancer.html', {'success': success})
 
 from django.shortcuts import render, redirect
 from .models import DanceSchool
